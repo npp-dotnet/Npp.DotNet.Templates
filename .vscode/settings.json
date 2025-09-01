@@ -1,0 +1,7 @@
+{
+	"dotnet.defaultSolution": "Npp.DotNet.Templates.sln",
+	"dotnet.preferCSharpExtension": true,
+	"dotnet.server.useOmnisharp": false,
+	"dotnetAcquisitionExtension.enableTelemetry": false,
+	"omnisharp.useModernNet": true
+}

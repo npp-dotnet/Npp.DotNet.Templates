@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Npp.NET (https://github.com/npp-dotnet)",
+  "classifications": [
+    "Library",
+    "Native AOT",
+    "Notepad++"
+  ],
+  "identity": "Npp.DotNet.Templates.Project",
+  "name": "Notepad++ plugin starter project",
+  "shortName": "npp-plugin",
+  "sourceName": "_ProjectName",
+  "preferNameDirectory": true,
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "include": [
+            "Properties/**",
+          ]
+        }
+      ]
+    }
+  ],
+  "primaryOutputs": [
+    {
+      "path": "_ProjectName.csproj"
+    }
+  ],
+  "postActions": [
+    {
+      "description": "Restore NuGet packages required by this project.",
+      "manualInstructions": [
+        {
+          "text": "Run 'dotnet restore'"
+        }
+      ],
+      "actionId": "210D431B-A78B-4D2F-B762-4ED3E3EA9025",
+      "continueOnError": false,
+      "args": {
+        "files": [
+          "_ProjectName.csproj"
+        ]
+      }
+    },
+    {
+      "description": "Add a configuration class (optional).",
+      "manualInstructions": [
+        {
+          "text": "Run 'dotnet new npp-plugin-ini [-C <class_name>]'"
+        }
+      ],
+      "actionId": "AC1156F7-BB77-4DB8-B28F-24EEBCCA1E5C"
+    }
+  ],
+  "constraints": {
+    "SupportedHosts": {
+      "type": "host",
+      "args": [
+        {
+          "hostname": "dotnetcli"
+        },
+        {
+          "hostname": "vs"
+        }
+      ]
+    },
+    "SupportedSDKs": {
+      "type": "sdk-version",
+      "args": [
+        "[9.0,)"
+      ]
+    }
+  }
+}

@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>Npp.DotNet.Templates</PackageId>
+    <PackageVersion>1.0.0-alpha.1</PackageVersion>
+    <Title>Notepad++ .NET Plugin Templates</Title>
+    <Description>.NET SDK project templates for Notepad++ plugin developers</Description>
+    <Authors>Robert Di Pardo</Authors>
+    <Copyright>(c) 2025 Npp.NET Team and Contributors</Copyright>
+    <PackageTags>dotnet;native;aot;notepad-plusplus</PackageTags>
+    <PackageProjectUrl>https://npp-dotnet.github.io/Npp.DotNet.Plugin</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/npp-dotnet/npp.dotnet.templates</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <RequireLicenseAcceptance>false</RequireLicenseAcceptance>
+
+    <!-- Keep package type as 'Template' to show the package as a template package on nuget.org and make your template available in dotnet new search.-->
+    <PackageType>Template</PackageType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>content</ContentTargetFolders>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+    <PackageIcon>brand.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <LocalizeTemplates>false</LocalizeTemplates>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.TemplateEngine.Tasks" Version="7.0.120" PrivateAssets="all" IsImplicitlyDefined="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="content\**\*" Exclude="content\**\bin\**;content\**\obj\**" />
+    <Compile Remove="**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="/" />
+    <None Include="brand.png" Pack="true" PackagePath="/" />
+    <None Include="LICENSES\*" Pack="true" PackagePath="/LICENSES" />
+  </ItemGroup>
+
+</Project>

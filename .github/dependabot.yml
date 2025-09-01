@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: Public Domain
+# SPDX-License-Identifier: CC0-1.0
+
+version: 2
+updates:
+  - package-ecosystem: "nuget"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      template-engine:
+        patterns:
+          - "Microsoft.TemplateEngine.*"
+          - "Microsoft.*"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      gh-actions:
+        patterns:
+          - "*"

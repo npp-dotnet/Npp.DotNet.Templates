@@ -1,0 +1,72 @@
+# SPDX-FileCopyrightText: Public Domain
+# SPDX-License-Identifier: CC0-1.0
+
+name: Package Templates
+on:
+  push:
+    branches-ignore:
+      - 'dependabot/**'
+  pull_request:
+    branches-ignore:
+      - 'dependabot/**'
+
+permissions:
+  contents: read
+
+jobs:
+  REUSE_compliance_check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+    - name: REUSE Compliance Check
+      uses: fsfe/reuse-action@bb774aa972c2a89ff34781233d275075cbddf542 # v5.0.0
+
+  build:
+    strategy:
+      matrix:
+        target_runtime: [ x64, arm64 ]
+    runs-on: windows-latest
+    env:
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
+        with:
+          dotnet-version: >
+            8.0.x
+            9.0.x
+
+      - name: Build template projects for win-${{ matrix.target_runtime }}
+        run: |
+          dotnet restore
+          dotnet publish -f net9.0-windows -r win-${{ matrix.target_runtime }}
+
+  package:
+    if: ${{ contains(github.ref, 'tags') && github.event_name == 'push' }}
+    runs-on: windows-latest
+    needs:
+      - build
+
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
+        with:
+          dotnet-version: >
+            9.0.x
+
+      - name: Build package
+        run: |
+          dotnet restore
+          dotnet build -c Release
+          dotnet pack
+
+      - name: Publish release
+        working-directory: ./bin/Release
+        run: |
+          dotnet nuget push `
+            Npp.DotNet.Templates.${{ github.ref_name }}.nupkg `
+            -k ${{ secrets.NPP_NET_NUGET_API_KEY }} `
+            -s https://api.nuget.org/v3/index.json `
+            --skip-duplicate

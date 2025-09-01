@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Npp.NET (https://github.com/npp-dotnet)",
+  "classifications": [
+    "Common",
+    "Code",
+    "Notepad++"
+  ],
+  "identity": "Npp.DotNet.Templates.IniFile",
+  "name": "Notepad++ plugin INI file manager class",
+  "shortName": "npp-plugin-ini",
+  "tags": {
+    "language": "C#",
+    "type": "item"
+  },
+  "symbols": {
+    "ClassName": {
+      "type": "parameter",
+      "description": "Name of the source file and class.",
+      "datatype": "text",
+      "replaces": "_ClassName",
+      "fileRename": "_ClassName",
+      "defaultValue": "IniFile"
+    },
+    "ItemNamespace": {
+      "type": "bind",
+      "binding": "msbuild:RootNamespace",
+      "replaces": "_namespace",
+      "defaultValue": "PluginProject"
+    }
+  },
+  "constraints": {
+    "IsCSharpProject": {
+      "type": "project-capability",
+      "args": "CSharp"
+    }
+  }
+}
