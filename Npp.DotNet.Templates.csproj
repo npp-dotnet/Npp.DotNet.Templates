@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageId>Npp.DotNet.Templates</PackageId>
-    <PackageVersion>1.0.0-alpha.1</PackageVersion>
+    <PackageVersion>1.0.0</PackageVersion>
     <Title>Notepad++ .NET Plugin Templates</Title>
     <Description>.NET SDK project templates for Notepad++ plugin developers</Description>
     <Authors>Robert Di Pardo</Authors>

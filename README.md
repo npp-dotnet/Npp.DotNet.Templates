@@ -7,6 +7,15 @@ Npp.DotNet.Templates
 .NET SDK project templates for Notepad++ plugin developers
 
 
+### Getting started
+
+Install the [.NET SDK](https://dotnet.microsoft.com/download), then install the template package:
+
+    dotnet new install Npp.DotNet.Templates
+
+Start a new project by running [`dotnet new`] `<template> --name <your_project_name>`
+
+
 ### Available project templates
 
 | Name                     | Description                                                     |

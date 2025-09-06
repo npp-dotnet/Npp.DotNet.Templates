@@ -12,6 +12,9 @@ updates:
         patterns:
           - "Microsoft.TemplateEngine.*"
           - "Microsoft.*"
+    ignore:
+      - dependency-name: "Microsoft.DotNet.ILCompiler"
+      - dependency-name: "Microsoft.NET.ILLink.Task"
 
   - package-ecosystem: "github-actions"
     directory: "/"
