@@ -1,0 +1,36 @@
+# SPDX-FileCopyrightText: Public Domain
+# SPDX-License-Identifier: CC0-1.0
+
+name: Package Templates
+on:
+  push:
+    tags:
+      - '**'
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: actions/setup-dotnet@d4c94342e560b34958eacfc5d055d21461ed1c5d # v5.0.0
+        with:
+          dotnet-version: >
+            9.0.x
+
+      - name: Build package
+        run: |
+          dotnet restore
+          dotnet build -c Release
+          dotnet pack
+
+      - name: Publish release
+        working-directory: ./bin/Release
+        run: |
+          dotnet nuget push `
+            Npp.DotNet.Templates.${{ github.ref_name }}.nupkg `
+            -k ${{ secrets.NPP_NET_NUGET_API_KEY }} `
+            -s https://api.nuget.org/v3/index.json `
+            --skip-duplicate
