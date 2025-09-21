@@ -28,11 +28,5 @@
       "replaces": "_namespace",
       "defaultValue": "PluginProject"
     }
-  },
-  "constraints": {
-    "IsCSharpProject": {
-      "type": "project-capability",
-      "args": "CSharp"
-    }
   }
 }

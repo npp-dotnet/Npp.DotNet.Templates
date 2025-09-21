@@ -191,8 +191,11 @@ partial class Main : IDotNetPlugin
     {
         if (_form1 == null)
         {
-            IntPtr hFormIcon = PluginData.Notepad.IsDarkModeEnabled() ? _tbIcons.HToolbarIconDarkMode : _tbIcons.HToolbarIcon;
-            _form1 = new Form1(DialogIndex, $"{PluginName}.dll", Icon.FromHandle(hFormIcon));
+            var iconName = PluginData.Notepad.IsDarkModeEnabled() ? "tbicon_dark.ico" : "tbicon.ico";
+            var iconFile = Path.Combine(PluginData.Notepad.GetPluginsHomePath(), PluginName, "Icons", iconName);
+            LoadToolbarIcon(LoadImageType.IMAGE_ICON, iconFile, out IntPtr hTabIcon);
+            var icon = Icon.FromHandle(hTabIcon == Win32.NULL ? GetStandardIcon(WindowsIcon.IDI_APPLICATION) : hTabIcon);
+            _form1 = new Form1(DialogIndex, $"{PluginName}.dll", icon);
             return;
         }
 
