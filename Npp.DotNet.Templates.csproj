@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageId>Npp.DotNet.Templates</PackageId>
-    <PackageVersion>1.0.1</PackageVersion>
+    <PackageVersion>2.0.0</PackageVersion>
     <Title>Notepad++ .NET Plugin Templates</Title>
     <Description>.NET SDK project templates for Notepad++ plugin developers</Description>
     <Authors>Robert Di Pardo</Authors>
@@ -16,7 +16,7 @@
 
     <!-- Keep package type as 'Template' to show the package as a template package on nuget.org and make your template available in dotnet new search.-->
     <PackageType>Template</PackageType>
-    <TargetFramework>net9.0-windows</TargetFramework>
+    <TargetFramework>net10.0-windows</TargetFramework>
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>

@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
     - name: REUSE Compliance Check
-      uses: fsfe/reuse-action@bb774aa972c2a89ff34781233d275075cbddf542 # v5.0.0
+      uses: fsfe/reuse-action@676e2d560c9a403aa252096d99fcab3e1132b0f5 # v6.0.0
 
   build:
     strategy:
@@ -35,10 +35,9 @@ jobs:
       - uses: actions/setup-dotnet@d4c94342e560b34958eacfc5d055d21461ed1c5d # v5.0.0
         with:
           dotnet-version: >
-            8.0.x
-            9.0.x
+            10.0.x
 
       - name: Build template projects for win-${{ matrix.target_runtime }}
         run: |
           dotnet restore
-          dotnet publish -f net9.0-windows -r win-${{ matrix.target_runtime }}
+          dotnet publish -f net10.0-windows -r win-${{ matrix.target_runtime }}

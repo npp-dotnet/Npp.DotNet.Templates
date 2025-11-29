@@ -43,8 +43,8 @@ src="https://raw.githubusercontent.com/npp-dotnet/Npp.DotNet.Plugin/refs/heads/m
 
 - To build for x86_64 Notepad++:
 
-        dotnet publish -f net9.0-windows -r win-x64 -o $(PLUGIN_FOLDER_PATH)
+        dotnet publish -f net10.0-windows -r win-x64 -o $(PLUGIN_FOLDER_PATH)
 
 - To build for ARM64 Notepad++:
 
-        dotnet publish -f net9.0-windows -r win-arm64 -o $(PLUGIN_FOLDER_PATH)
+        dotnet publish -f net10.0-windows -r win-arm64 -o $(PLUGIN_FOLDER_PATH)

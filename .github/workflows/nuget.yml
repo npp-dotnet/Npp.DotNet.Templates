@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: read
+  id-token: write
 
 jobs:
   package:
@@ -18,7 +19,7 @@ jobs:
       - uses: actions/setup-dotnet@d4c94342e560b34958eacfc5d055d21461ed1c5d # v5.0.0
         with:
           dotnet-version: >
-            9.0.x
+            10.0.x
 
       - name: Build package
         run: |
@@ -26,11 +27,17 @@ jobs:
           dotnet build -c Release
           dotnet pack
 
+      - name: Obtain NuGet API key
+        uses: NuGet/login@d22cc5f58ff5b88bf9bd452535b4335137e24544 # v1.1.0
+        id: login
+        with:
+          user: ${{ github.actor }}
+
       - name: Publish release
         working-directory: ./bin/Release
         run: |
           dotnet nuget push `
             Npp.DotNet.Templates.${{ github.ref_name }}.nupkg `
-            -k ${{ secrets.NPP_NET_NUGET_API_KEY }} `
+            -k ${{ steps.login.outputs.NUGET_API_KEY }} `
             -s https://api.nuget.org/v3/index.json `
             --skip-duplicate

@@ -72,7 +72,7 @@
     "SupportedSDKs": {
       "type": "sdk-version",
       "args": [
-        "[9.0,)"
+        "[10.0,)"
       ]
     }
   }
