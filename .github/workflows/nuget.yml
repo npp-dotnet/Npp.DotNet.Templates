@@ -9,14 +9,20 @@ on:
 
 permissions:
   contents: read
-  id-token: write
 
 jobs:
   package:
     runs-on: windows-latest
+    permissions:
+      id-token: write   # required by NuGet/login
+    concurrency:
+      group: rel-${{ github.ref_name }}
+      cancel-in-progress: true
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-      - uses: actions/setup-dotnet@2016bd2012dba4e32de620c46fe006a3ac9f0602 # v5.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@baa11fbfe1d6520db94683bd5c7a3818018e4309 # v5.1.0
         with:
           dotnet-version: >
             10.0.x
@@ -37,7 +43,10 @@ jobs:
         working-directory: ./bin/Release
         run: |
           dotnet nuget push `
-            Npp.DotNet.Templates.${{ github.ref_name }}.nupkg `
-            -k ${{ steps.login.outputs.NUGET_API_KEY }} `
+            Npp.DotNet.Templates.${env:RELEASE}.nupkg `
+            -k ${env:API_KEY} `
             -s https://api.nuget.org/v3/index.json `
             --skip-duplicate
+        env:
+          RELEASE: ${{ github.ref_name }}
+          API_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}

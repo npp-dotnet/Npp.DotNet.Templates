@@ -6,6 +6,8 @@ on:
   push:
     branches-ignore:
       - 'dependabot/**'
+    tags-ignore:
+      - '**'
   pull_request:
     branches-ignore:
       - 'dependabot/**'
@@ -18,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+      with:
+        persist-credentials: false
     - name: REUSE Compliance Check
       uses: fsfe/reuse-action@676e2d560c9a403aa252096d99fcab3e1132b0f5 # v6.0.0
 
@@ -32,7 +36,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
-      - uses: actions/setup-dotnet@2016bd2012dba4e32de620c46fe006a3ac9f0602 # v5.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@baa11fbfe1d6520db94683bd5c7a3818018e4309 # v5.1.0
         with:
           dotnet-version: >
             10.0.x
@@ -40,4 +46,6 @@ jobs:
       - name: Build template projects for win-${{ matrix.target_runtime }}
         run: |
           dotnet restore
-          dotnet publish -f net10.0-windows -r win-${{ matrix.target_runtime }}
+          dotnet publish -f net10.0-windows -r win-${env:RID}
+        env:
+          RID: ${{ matrix.target_runtime }}
