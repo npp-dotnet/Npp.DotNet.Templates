@@ -33,7 +33,7 @@ Start a new project by running [`dotnet new`] `<template> --name <your_project_n
 
 ### License
 
-    (c) 2025 Npp.NET Team and Contributors
+    (c) 2026 Npp.NET Team and Contributors
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -47,8 +47,10 @@ Start a new project by running [`dotnet new`] `<template> --name <your_project_n
     See the License for the specific language governing permissions and
     limitations under the License.
 
+This README and all other documentation, including images, are distributed under a [CC0 v1.0 Public Domain Dedication].
 
 [`dotnet new`]: https://learn.microsoft.com/dotnet/core/tools/dotnet-new
 [`Npp.DotNet.Plugin.Extensions.DefaultSettings`]: https://npp-dotnet.github.io/Npp.DotNet.Plugin/api/Npp.DotNet.Plugin.Extensions.DefaultSettings.html
 [Current Version]: https://img.shields.io/nuget/vpre/npp.dotnet.templates?color=blueviolet&logo=nuget
 [nuget-org]: https://www.nuget.org/packages/npp.dotnet.templates
+[CC0 v1.0 Public Domain Dedication]: https://raw.githubusercontent.com/npp-dotnet/npp.dotnet.plugin/main/LICENSES/CC0-1.0.txt

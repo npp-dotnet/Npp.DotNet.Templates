@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <PackageId>Npp.DotNet.Templates</PackageId>
-    <PackageVersion>2.0.0</PackageVersion>
+    <PackageVersion>2.1.0</PackageVersion>
     <Title>Notepad++ .NET Plugin Templates</Title>
     <Description>.NET SDK project templates for Notepad++ plugin developers</Description>
     <Authors>Robert Di Pardo</Authors>
-    <Copyright>(c) 2025 Npp.NET Team and Contributors</Copyright>
+    <Copyright>(c) 2026 Npp.NET Team and Contributors</Copyright>
     <PackageTags>dotnet;native;aot;notepad-plusplus</PackageTags>
     <PackageProjectUrl>https://npp-dotnet.github.io/Npp.DotNet.Plugin</PackageProjectUrl>
     <RepositoryUrl>https://github.com/npp-dotnet/npp.dotnet.templates</RepositoryUrl>
